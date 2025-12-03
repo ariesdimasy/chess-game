@@ -1,4 +1,4 @@
-const readline = require("readline-sync");
+import readline from "readline-sync";
 
 class Log {
     logs = []
@@ -38,9 +38,9 @@ function convertCoordinate(ccor){
     let x = ccor[0]
     let y = ccor[1] 
     let alpha = "ABCDEFGH"
-    let findX = alpha.split("").reverse().findIndex((item) => item === x) + 1 - Number(y) // 6
-    let findY = alpha.split("").findIndex((item) => item === x)
-    
+    let findX = 8 - y
+    let findY = alpha.split("").findIndex((item) => item == x)
+    console.log(ccor,findX, findY)
     return [findX, findY]
 }
 
@@ -81,6 +81,8 @@ function move(board,logObj,from,to){
     let fromConvert = convertCoordinate(from)
     let toConvert = convertCoordinate(to)
 
+    console.log("toConvert => ", to, toConvert)
+
     let temp = board[fromConvert[0]][fromConvert[1]]
 
     board[fromConvert[0]][fromConvert[1]] = checkBoxColor(fromConvert[0], fromConvert[1])
@@ -106,7 +108,7 @@ function main(){
     log1.addLog("Kw","A3","A2")
 
     while(win == false){
-        console.clear()
+        // console.clear()
         console.log("LOGS : ")
         console.table(log1.logs)
         console.log(" Last Board : ")
