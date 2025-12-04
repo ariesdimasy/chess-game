@@ -2,8 +2,8 @@
 
 this is mini chess mid game console made by : 
 
-Name : Aries Dimas Yudhistira
-Title : Software Engineer 
+Name : Aries Dimas Yudhistira\
+Title : Software Engineer
 
 ## How to Run a Program
 
@@ -50,7 +50,7 @@ so that means :
 - P means Pawn 
 - B means Bishop 
 
-the first turn , white move first, so...
+the first turn , white move first, so...\
 if we see the program initiation Qw is on position / coordinate "A1 based on chess board image. so input A1 in prompt "Init" if we selected Queen. hit enter. 
 after that prompt input "Move to" show , after that input the coordinate want to move. for example "B1". hit enter 
 
