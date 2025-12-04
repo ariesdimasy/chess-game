@@ -1,4 +1,5 @@
 import readline from "readline-sync";
+import boxen from "boxen"
 
 class Log {
     logs = []
@@ -7,6 +8,15 @@ class Log {
             piece, from, to
         })
     }
+}
+
+class Piece { 
+    name = ""
+    direction = []
+}
+
+class Queen extends Piece {
+    
 }
 
 function board(){
@@ -60,23 +70,6 @@ function checkBoxColor(x,y){
     }
 }
 
-
-
-function checkQueen(){
-
-}
-
-function checkPawn(){
-
-}
-
-function checkKing(from, to){
-    let fromConvert = convertCoordinate(from)
-    let toConvert = convertCoordinate(to)
-
-
-}
-
 function move(board,logObj,turn,from,to){
     let fromConvert = convertCoordinate(from)
     let toConvert = convertCoordinate(to)
@@ -115,6 +108,7 @@ function main(){
         console.table(log1.logs)
         console.log(" Last Board : ")
         console.table(mainBoard)
+        // realBoard(mainBoard)
         console.log("turn : ", turn == "w" ? "white" : "black")
         let fromInput = readline.question("Init : ");
         let toInput = readline.question("Move to : ");
