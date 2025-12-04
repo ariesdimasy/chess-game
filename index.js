@@ -1,4 +1,5 @@
 import readline from "readline-sync";
+import boxen from "boxen";
 class Log {
     logs = []
     addLog(board, piece, from, to ){
@@ -110,11 +111,11 @@ function convertCoordinate(ccor){
     let x = ccor[0]
     let y = Number(ccor[1]) 
     if(alpha.split("").findIndex((item) => item == x) == -1){
-        console.log("invalid Coordinate")
+        console.log(errorBox("invalid Coordinate"))
         return false
     }
     if(y < 1 && y > 8){
-        console.log("invalid Coordinate")
+        console.log(errorBox("invalid Coordinate"))
         return false 
     }
    
@@ -123,6 +124,14 @@ function convertCoordinate(ccor){
 
     //console.log(ccor,findX, findY)
     return [findX, findY]
+}
+
+function errorBox(message){
+    return boxen(message,{
+        borderColor:'red',
+        borderStyle:"single",
+        padding:1
+    })
 }
 
 function checkBoxColor(x,y){
@@ -145,19 +154,27 @@ function move(board,logObj,from,to){
     //console.log("move()", from, to)
     let fromConvert = convertCoordinate(from)
     let toConvert = convertCoordinate(to)
-
-    //console.log("toConvert => ", to, toConvert)
-    
-    let temp = board[fromConvert[0]][fromConvert[1]]
-    let toBoard = board[toConvert[0]][toConvert[1]]
-
-    if(temp == "[ ]" || temp == "( )" || !temp){
-        console.log("there is no Chessman in this location")
+  
+    if(!fromConvert){
+        console.log(errorBox("Invalid location From"))
+        return false
+    }
+    if(!toConvert){
+        console.log(errorBox("Invalid location To"))
         return false
     }
 
+    //console.log("toConvert => ", to, toConvert)
+    
+    let temp = board[fromConvert[0]] ?  board[fromConvert[0]][fromConvert[1]] : undefined
+    let toBoard = board[fromConvert[0]] ?  board[toConvert[0]][toConvert[1]] : undefined
+ 
     if(!toBoard){
-        console.log("Invalid location")
+        console.log(errorBox("Invalid location"))
+        return false
+    }
+    if(temp == "[ ]" || temp == "( )" || !temp){
+        console.log(errorBox("there is no Chessman in this location"))
         return false
     }
 
